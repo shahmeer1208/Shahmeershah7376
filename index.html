@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>CapCut Pro Clone - Full Editor</title>
+    <style>
+        :root {
+            --primary: #fe2c55;
+            --secondary: #25f4ee;
+            --dark: #121212;
+        }
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: var(--dark);
+            color: white;
+            margin: 0;
+            padding: 0;
+        }
+        .editor-container {
+            display: flex;
+            height: 100vh;
+        }
+        .timeline {
+            width: 100%;
+            background: #1e1e1e;
+            padding: 20px;
+        }
+        .video-preview {
+            width: 100%;
+            background: black;
+            border-radius: 8px;
+        }
+        .toolbar {
+            display: flex;
+            gap: 10px;
+            padding: 15px 0;
+            overflow-x: auto;
+        }
+        .tool-btn {
+            background: #333;
+            border: none;
+            color: white;
+            padding: 10px 15px;
+            border-radius: 8px;
+            cursor: pointer;
+            white-space: nowrap;
+        }
+        .filter-panel {
+            display: flex;
+            gap: 15px;
+            padding: 15px 0;
+            overflow-x: auto;
+        }
+        .filter-card {
+            flex: 0 0 80px;
+            text-align: center;
+        }
+        .filter-preview {
+            width: 60px;
+            height: 60px;
+            border-radius: 10px;
+            background: linear-gradient(45deg, #ff4d4d, #f9cb28);
+            margin: 0 auto;
+        }
+        .active-filter {
+            border: 3px solid var(--primary);
+        }
+    </style>
+</head>
+<body>
+    <div class="editor-container">
+        <div class="timeline">
+            <video controls class="video-preview"></video>
+            
+            <!-- Editing Tools -->
+            <div class="toolbar">
+                <button class="tool-btn">✂️ Split</button>
+                <button class="tool-btn">🎚️ Speed</button>
+                <button class="tool-btn">🔊 Audio</button>
+                <button class="tool-btn">📝 Text</button>
+                <button class="tool-btn">🎨 Filters</button>
+                <button class="tool-btn">🔄 Transition</button>
+                <button class="tool-btn">✋ Freeze</button>
+                <button class="tool-btn">🔍 Zoom</button>
+            </div>
+            
+            <!-- Filters -->
+            <h3>50+ Premium Filters</h3>
+            <div class="filter-panel">
+                <div class="filter-card">
+                    <div class="filter-preview" style="background:linear-gradient(45deg,#f3d8b0,#e6b980)"></div>
+                    <p>Vintage</p>
+                </div>
+                <div class="filter-card">
+                    <div class="filter-preview" style="background:linear-gradient(45deg,#3a1c71,#d76d77)"></div>
+                    <p>Dramatic</p>
+                </div>
+                <div class="filter-card">
+                    <div class="filter-preview" style="background:linear-gradient(45deg,#0575e6,#00f260)"></div>
+                    <p>Cool</p>
+                </div>
+                <div class="filter-card">
+                    <div class="filter-preview" style="background:linear-gradient(45deg,#ff512f,#dd2476)"></div>
+                    <p>Warm</p>
+                </div>
+                <div class="filter-card">
+                    <div class="filter-preview" style="background:linear-gradient(45deg,#0f0c29,#302b63)"></div>
+                    <p>Noir</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Filter selection
+        document.querySelectorAll('.filter-card').forEach(card => {
+            card.addEventListener('click', () => {
+                document.querySelectorAll('.filter-preview').forEach(p => p.classList.remove('active-filter'));
+                card.querySelector('.filter-preview').classList.add('active-filter');
+                alert(`Applied ${card.querySelector('p').textContent} filter!`);
+            });
+        });
+
+        // Tool buttons
+        document.querySelectorAll('.tool-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                alert(`${btn.textContent.trim()} tool activated!`);
+            });
+        });
+    </script>
+</body>
+</html>
